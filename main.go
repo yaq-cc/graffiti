@@ -8,8 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"graffiti-2/cache"
-	"graffiti-2/handlers"
+	"github.com/yaq-cc/graffiti/cache"
+	"github.com/yaq-cc/graffiti/handlers"
 
 	"cloud.google.com/go/firestore"
 )

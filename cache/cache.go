@@ -11,7 +11,7 @@ import (
 	"sync"
 	"text/template"
 
-	cx "graffiti-2/godfcx"
+	cx "github.com/yaq-cc/graffiti/godfcx"
 
 	"cloud.google.com/go/firestore"
 )

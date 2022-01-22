@@ -2,10 +2,11 @@ package handlers
 
 import (
 	"bytes"
-	"graffiti-2/cache"
-	cx "graffiti-2/godfcx"
 	"log"
 	"net/http"
+
+	"github.com/yaq-cc/graffiti/cache"
+	cx "github.com/yaq-cc/graffiti/godfcx"
 )
 
 type WebhookManager struct {
