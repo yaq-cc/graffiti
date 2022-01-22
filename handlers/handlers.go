@@ -24,10 +24,11 @@ func (wm *WebhookManager) Initialize(c *cache.TemplateCache, ep string, r *http.
 		log.Fatal("No template found.")
 	}
 	wm.Template = t
-	err := wm.WebhookRequest.FromRequest(r)
+	err := wm.FromRequest(r)
 	if err != nil {
 		log.Fatal(err)
 	}
+	// Why isn't MapSession Variables being promoted?
 	wm.VariablesMap = wm.Template.MapSessionVariables(&wm.WebhookRequest)
 }
 
