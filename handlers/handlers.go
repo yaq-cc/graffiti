@@ -49,9 +49,9 @@ func TestEndpoint2Handler(c *cache.TemplateCache) func(w http.ResponseWriter, r 
 		calcVar := "42"
 
 		wm.Initialize(c, "/test_endpoint_2", r)
-		wm.MapCalculated("UniversalAnswer", calcVar)
+		wm.MapCalculated("UniversalAnswer", calcVar) // Use MapCalculated to include calculated variables.
 		resp := wm.ExecuteTemplate()
-		wm.WebhookResponse.TextResponse(w, resp.String())
+		wm.TextResponse(w, resp.String())
 
 	}
 }
