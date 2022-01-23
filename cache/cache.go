@@ -96,6 +96,7 @@ type TemplateCache struct {
 	AgentName string
 	Cache     TemplateDefinitions
 	mu        sync.RWMutex
+	templates []string
 }
 
 func (c *TemplateCache) Store(ep string, tmp Template) {
@@ -106,6 +107,7 @@ func (c *TemplateCache) Store(ep string, tmp Template) {
 	if !ok {
 		fmt.Println("Adding template:", ep)
 		c.Cache[ep] = tmp
+		c.templates = append(c.templates, ep)
 	} else {
 		// Check if the template is new.
 		same := old.Equals(&tmp)
@@ -122,6 +124,12 @@ func (c *TemplateCache) Load(name string) (tmp Template, ok bool) {
 	tmp, ok = c.Cache[name]
 	return tmp, ok
 }
+
+// func (c *TemplateCache) Range(callback func(key string)) {
+// 	for ep, tmp := range c.Cache {
+// 		handler := 
+// 	}
+// }
 
 // Listen listen's for updates to string template definitions in Firestore
 // and updates the template cache in a concurrent safe manner.  It returns a

@@ -41,6 +41,16 @@ func (wm *WebhookManager) MapCalculated(name, value string) {
 	wm.VariablesMap[name] = value
 }
 
+func RegisterHandlers(c *cache.TemplateCache) {
+	// for each template, register a handler.
+	// 1 - create a handler (returns func(w, r))
+	// 2 - execute http.HandlFunc(route, handler)
+	// 3 - handle accepts a map of funcs which return string
+	// 4 - funcs are called to generate calculated vars
+	// 5 - only funcs with inferredargs are called
+
+}
+
 func TestEndpoint2Handler(c *cache.TemplateCache) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var wm WebhookManager
