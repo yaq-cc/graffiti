@@ -1,5 +1,4 @@
 steps:
-  
 - id: docker-build-push-service
   waitFor: ['-']
   name: gcr.io/cloud-builders/docker
@@ -28,5 +27,8 @@ steps:
 
 substitutions:
   _SERVICE: graffiti
+
 options:
   logging: CLOUD_LOGGING_ONLY
+
+# Random comment to git push
