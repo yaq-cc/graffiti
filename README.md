@@ -1,4 +1,4 @@
-# Graffiti: No Code updates for Webhook Fulfillment responses in realtime.  
+# Graffiti: No Code updates for Webhook Fulfillment (in realtime).  
 
 Graffiti for Dialogflow CX decouples Webhook Response messages from the fulfillment server.  By decoupling the server's running code from response message templates we can empower the line of business to quickly update response messages from a browser instead of depending on tickets with internal IT or external partners who'd need (at least) a couple days just to process the request.  
 
@@ -28,4 +28,4 @@ templates:
     prototype: "{{.State}} ... interesting.  Thanks for sharing.  How old are you?"
 ```
 
-Once the definitions are staged into Firestore, the Graffiti GUI (a web based application) can be used by users to make updaates to the template's prototype - the string "template" that the fulfillment server will reply to a request with.  
+Once the definitions are staged into Firestore, the Graffiti GUI (a web based application) can be used by users to make updates to the template's prototype - the string "template" that the fulfillment server will reply to a request with.  
