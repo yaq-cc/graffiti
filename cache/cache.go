@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"reflect"
 	"regexp"
@@ -125,9 +126,17 @@ func (c *TemplateCache) Load(name string) (tmp Template, ok bool) {
 	return tmp, ok
 }
 
+func (c *TemplateCache) CacheCopier(w io.Writer) {
+	defer c.mu.RUnlock()
+	c.mu.RLock()
+	enc := json.NewEncoder(w)
+	enc.SetIndent("", "\t")
+	enc.Encode(c.Cache)
+}
+
 // func (c *TemplateCache) Range(callback func(key string)) {
 // 	for ep, tmp := range c.Cache {
-// 		handler := 
+// 		handler :=
 // 	}
 // }
 

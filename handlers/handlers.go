@@ -100,3 +100,9 @@ func TestEndpoint1Handler(c *cache.TemplateCache) func(w http.ResponseWriter, r 
 		whresp.TextResponse(w, m.String())
 	}
 }
+
+func GetAllHandler(c *cache.TemplateCache) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		c.CacheCopier(w)
+	}
+}

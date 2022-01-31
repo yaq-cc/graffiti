@@ -34,10 +34,11 @@ func main() {
 	}
 
 	var tc cache.TemplateCache
-	// Terminate tc.Listen on signal notification.  
+	// Terminate tc.Listen on signal notification.
 	tc.Listen(notify, client) // Wait until cache gets loaded.
 	// ~~ HTTP Server ~~ //
 	mux := http.NewServeMux()
+	// mux.HandleFunc("/endpoints", handlers.GetAllHandler(&tc))
 	mux.HandleFunc("/test_endpoint_1", handlers.TestEndpoint1Handler(&tc))
 	mux.HandleFunc("/test_endpoint_2", handlers.TestEndpoint2Handler(&tc))
 	server := &http.Server{

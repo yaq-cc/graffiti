@@ -28,8 +28,10 @@ templates:
     prototype: "{{.State}} ... interesting.  Thanks for sharing.  How old are you?"
 ```
 
+Every field inside the template definition serves a purpose.  For instance, the handler-name field is used to look up the handlers source code in github and display it to the user so they can have an idea of what's happening every time the endpoint is called.  
+
 Once the definitions are staged, the Graffiti GUI (a web based application) can be used to make updates to the template's prototype - the string "template" that the fulfillment server will reply to a request with.  Users can move session variables and calculated variables around, they can "bring" session variables if the developer adds a new variable, or they can remove variables from the template if they're not needed.  Users can also interact with server-side calculated variables by moving it's placement within the endpoints prototype.  
 
-String prototypes should conform to Go's string templating format which can, in fact, support more advanced logic.  [MORE ON THIS LATER]
+String prototypes should conform to Go's string templating format which can support more advanced logic.  [MORE ON THIS LATER]
 
 Fore more details on the Graffiti Designer, please see the Graffiti Designer Github page available here: GRAFFITI DESIGNER.   
