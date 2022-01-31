@@ -103,6 +103,7 @@ func TestEndpoint1Handler(c *cache.TemplateCache) func(w http.ResponseWriter, r 
 
 func GetAllHandler(c *cache.TemplateCache) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		defer r.Body.Close()
 		c.CacheCopier(w)
 	}
 }

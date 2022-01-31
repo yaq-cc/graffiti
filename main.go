@@ -38,11 +38,12 @@ func main() {
 	tc.Listen(notify, client) // Wait until cache gets loaded.
 	// ~~ HTTP Server ~~ //
 	mux := http.NewServeMux()
-	// mux.HandleFunc("/endpoints", handlers.GetAllHandler(&tc))
+	mux.HandleFunc("/endpoints", handlers.GetAllHandler(&tc))
 	mux.HandleFunc("/test_endpoint_1", handlers.TestEndpoint1Handler(&tc))
 	mux.HandleFunc("/test_endpoint_2", handlers.TestEndpoint2Handler(&tc))
 	server := &http.Server{
 		Addr:        ":" + port,
+		Handler:     mux,
 		BaseContext: func(net.Listener) context.Context { return parent },
 	}
 	go server.ListenAndServe()
