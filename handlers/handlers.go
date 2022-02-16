@@ -28,7 +28,7 @@ func (wm *WebhookManager) Initialize(c *cache.TemplateCache, ep string, r *http.
 	if err != nil {
 		log.Fatal(err)
 	}
-	// Why isn't MapSession Variables being promoted?
+	// Why isn't MapSession Variables being promoted when the Template is embedded in WebhookManager?
 	wm.VariablesMap = wm.Template.MapSessionVariables(&wm.WebhookRequest)
 }
 
@@ -104,6 +104,7 @@ func TestEndpoint1Handler(c *cache.TemplateCache) func(w http.ResponseWriter, r 
 func GetAllHandler(c *cache.TemplateCache) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
+		w.Header().Set("Content-Type", "application/json")
 		c.CacheCopier(w)
 	}
 }
