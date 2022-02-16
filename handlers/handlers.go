@@ -104,6 +104,8 @@ func TestEndpoint1Handler(c *cache.TemplateCache) func(w http.ResponseWriter, r 
 func GetAllHandler(c *cache.TemplateCache) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer r.Body.Close()
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
 		c.CacheCopier(w)
 	}
