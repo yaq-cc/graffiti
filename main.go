@@ -42,6 +42,7 @@ func main() {
 	mux.HandleFunc("/test_endpoint_1", handlers.TestEndpoint1Handler(&tc))
 	mux.HandleFunc("/test_endpoint_2", handlers.TestEndpoint2Handler(&tc))
 	mux.HandleFunc("/get_definitions", handlers.GetAllHandler(&tc))
+	mux.HandleFunc("/update_definitions", handlers.UpdateAllHandler(client))
 	server := &http.Server{
 		Addr:        ":" + port,
 		Handler:     mux,

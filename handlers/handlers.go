@@ -2,8 +2,13 @@ package handlers
 
 import (
 	"bytes"
+	"context"
+	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+
+	"cloud.google.com/go/firestore"
 
 	"github.com/yaq-cc/graffiti/cache"
 	cx "github.com/yaq-cc/graffiti/godfcx"
@@ -108,5 +113,28 @@ func GetAllHandler(c *cache.TemplateCache) func(w http.ResponseWriter, r *http.R
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
 		c.CacheCopier(w)
+	}
+}
+
+func UpdateAllHandler(fs *firestore.Client) func(w http.ResponseWriter, r *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		defer r.Body.Close()
+		if r.Method != "POST" {
+			fmt.Fprint(w, "Nope - needs to be post, bro!")
+			return
+		}
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Content-Type", "application/json")
+
+		var payload map[string]interface{}
+		json.NewDecoder(r.Body).Decode(&payload)
+		defs := fs.Collection("go-testing").Doc("test-1")
+		ctx := context.Background()
+		wr, err := defs.Set(ctx, payload)
+		if err != nil {
+			fmt.Fprint(w, err)
+		}
+		fmt.Fprint(w, *wr)
 	}
 }
